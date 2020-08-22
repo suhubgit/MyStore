@@ -1,0 +1,79 @@
+## Program Features :
+
+## #1 Program interacts with you using Voice
+## #2 It sets Task Limit
+## #3 It informs you Pending Attempts
+## #4 Program stops automatically when all Task are completed with Message
+## #5 Opens Websites you asked for
+## #6 You just Type query text - It will give you Search Result Page using Google Search
+
+## Program starts here
+
+import os
+import pyttsx3
+import webbrowser 
+from googlesearch import search 
+
+# os.system("notepad")
+
+engine = pyttsx3.init()
+voices = engine.getProperty('voices')
+# for voice in voices:
+#     print(voice.languages[0])
+#     # if voice.languages[0] == u'en_US':
+#     #     engine.setProperty('voice', voice.id)
+#     #     break
+
+i=0
+
+# engine.say('Hey This is Python How may I help you') 
+# engine.runAndWait()
+
+while (i < 5) :
+    
+    a = 5-i
+
+    # print(a,a,a,a)
+    a = 'Ask me any ' + str(a) + ' Questions Now'
+    print(a)
+    engine.say(a)
+    engine.runAndWait()
+
+    ipt = input("Type Here >> ") 
+
+    if 'linkedin' in ipt : 
+        webbrowser.open_new('https://www.linkedin.com/mynetwork/')
+        engine.runAndWait()
+
+    elif 'twitter' in ipt : 
+        webbrowser.open_new('https://twitter.com/home')
+        engine.runAndWait()
+    
+    elif 'gmail' in ipt : 
+        webbrowser.open_new('https://mail.google.com/mail/u/0/#inbox')
+        engine.runAndWait()
+
+    elif 'whatsapp' in ipt : 
+        webbrowser.open_new('https://web.whatsapp.com/')
+        engine.runAndWait()
+
+    elif 'google' in ipt : 
+        query = input("Type Search Query Here >> ") 
+  
+        for qr in search(query, tld="co.in", num=1, stop=1, pause=1) :
+            webbrowser.open_new(qr)
+            engine.runAndWait()
+
+    i = i + 1
+
+engine.stop()
+engine.say('I have given Answers to all 3 Questions you have asked. Thank You.') 
+engine.runAndWait()
+engine.stop()
+
+## Program End here
+
+
+
+
+
